@@ -152,6 +152,8 @@ GET /books/_count
 
 GET /books/book/_count
 
+- Search in a given type: 
+
 GET /books/book/_count
 {
 	query: {
@@ -160,6 +162,46 @@ GET /books/book/_count
 		}
 	}
 }
+
+- Search across all types in an index, match does the full-text search: 
+
+GET /books/_search
+{
+	query: {
+		match: {
+			author: "Dennis Alder"
+		}
+	}
+}
+
+- Pagination: 
+
+GET /books/_search?size=5&from=10
+
+- Term search looks for *exact* value (and isbn field is of keyword type)
+
+GET /books/_search
+{
+	query: {
+		term: {
+			isbn: "978398147521772547"
+		}
+	}
+}
+
+- A match search across multiple indices & multiple types:
+
+GET /books,magazines/book,magazine/_search
+{
+	query:{
+		match: {
+			author: "R. L. Stevenson"
+		}
+	}
+}
+
+
+
 
 
 
