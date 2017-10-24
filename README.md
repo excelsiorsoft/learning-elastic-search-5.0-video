@@ -68,7 +68,7 @@ curl -XPOST http://localhost:9200/books/author/- d
 }
 
 
-- With ID pre-assignmed:
+- With pre-assigned ID:
 
 curl -XPOST http://localhost:9200/books/author/1/_create- d
 {
