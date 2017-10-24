@@ -143,6 +143,26 @@ curl -XGET http://localhost:9200/books/book/18?pretty
 ###### string = text (indexed) + keyword (not indexed)
 ##### scaled_float parameter with scale factor of 100: 10.45 = 1045
 
+- Searching
+
+curl -XGET http://localhost:9200/INDEX_NAME/_search?q=name:John
+GET /INDEX_NAME/_search?q=name:John
+
+GET /books/_count
+
+GET /books/book/_count
+
+GET /books/book/_count
+{
+	query: {
+		match: {
+			author: "Robert Gerlach"
+		}
+	}
+}
+
+
+
 
 
 
