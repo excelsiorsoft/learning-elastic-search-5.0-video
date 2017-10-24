@@ -24,8 +24,38 @@ GET /books
 ##### \# of shards is immutable
 ##### \# of replicas can be changed later
 
--Modifying index's attributes:
+- Modifying index's attributes:
 PUT /books/_settings
 {
 	"number_of_replicas":1
+}
+
+
+- Check cluster's health:
+curl -XGET http://localhost:9200/_cluster/health?pretty
+
+#####In Kibana: 
+
+PUT /books
+{
+settings:{
+	number_of_shards:1
+	number_of_replicas:0
+},
+mappings:{
+	authors: {
+		properties: {
+			name: {
+				type: string
+			},
+			book_count: {
+				type: integer
+			},
+			date: {
+				type: date
+			}
+		}
+	}
+}
+
 }
