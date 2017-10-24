@@ -81,3 +81,5 @@ curl -XDELETE http://localhost:9200/books/author/1/_create- d
 {
 	name: Michael J.
 }
+
+##### Single-node cluster ends up with an 'yellow' status (warning)
