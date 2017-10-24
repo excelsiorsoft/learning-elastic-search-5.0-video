@@ -34,7 +34,7 @@ PUT /books/_settings
 - Check cluster's health:
 curl -XGET http://localhost:9200/_cluster/health?pretty
 
-##### In Kibana (authors is a type): 
+##### In Kibana (authors is a type of document): 
 
 PUT /books
 {
@@ -82,7 +82,7 @@ curl -XDELETE http://localhost:9200/books/author/1/_create- d
 	name: Michael J.
 }
 
-##### Single-node cluster ends up with an 'yellow' status (warning)
+##### Single-node cluster ends up with an 'yellow' status (warning):
 
 GET /books/_cluster/health
 
@@ -118,4 +118,10 @@ properties:
 - Delete a document: 
 
 DELETE /books/author/1
+
+- Confirm deletion: 
+
+GET /books/author/1
+
+##### Adding multiple documents at a time (Bulk API):
 
