@@ -126,11 +126,26 @@ GET /books/author/1
 ##### Adding multiple documents at a time (Bulk API):
 
 curl -POST http://localhost:9200/_bulk -d
-
 {index: {_index: books, _type: author, _id: 1}}
 {name: John, isbn: 25874}
 {index: {_index: books, _type: author, _id: 2}}
 {name: Michael, isbn: 9632471}
+
+POST /books/_bulk
+{index: {_index: books, _type: author, _id: 1}}
+{name: John, isbn: 25874}
+{index: {_index: books, _type: author, _id: 2}}
+{name: Michael, isbn: 9632471}
+
+curl -XPOST http://localhost:9200/books/_bulk --data-binary @books.json
+curl -XGET http://localhost:9200/books/book/18?pretty
+
+###### string = text (indexed) + keyword (not indexed)
+##### scaled_float parameter with scale factor of 100: 10.45 = 1045
+
+
+
+
 
 
 
