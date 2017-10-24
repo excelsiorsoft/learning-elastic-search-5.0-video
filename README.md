@@ -34,7 +34,7 @@ PUT /books/_settings
 - Check cluster's health:
 curl -XGET http://localhost:9200/_cluster/health?pretty
 
-#####In Kibana: 
+##### In Kibana (authors is a type): 
 
 PUT /books
 {
@@ -58,4 +58,19 @@ mappings:{
 	}
 }
 
+}
+
+- No ID assignment:
+
+curl -XPOST 'http://localhost:9200/books/author/'- d'
+{
+	name: Michael J.
+}
+
+
+- With ID pre-assignmed:
+
+curl -XPOST 'http://localhost:9200/books/author/1/_create'- d'
+{
+	name: Michael J.
 }
