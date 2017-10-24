@@ -62,7 +62,7 @@ mappings:{
 
 - No ID assignment:
 
-curl -XPOST 'http://localhost:9200/books/author/'- d'
+curl -XPOST http://localhost:9200/books/author/- d
 {
 	name: Michael J.
 }
@@ -70,7 +70,7 @@ curl -XPOST 'http://localhost:9200/books/author/'- d'
 
 - With ID pre-assignmed:
 
-curl -XPOST 'http://localhost:9200/books/author/1/_create'- d'
+curl -XPOST http://localhost:9200/books/author/1/_create- d
 {
 	name: Michael J.
 }
