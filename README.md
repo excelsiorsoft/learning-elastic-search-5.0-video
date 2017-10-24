@@ -83,3 +83,39 @@ curl -XDELETE http://localhost:9200/books/author/1/_create- d
 }
 
 ##### Single-node cluster ends up with an 'yellow' status (warning)
+
+GET /books/_cluster/health
+
+##### Adding document in Kibana dev tools:
+
+- an ID is auto-assigned here: 
+
+POST /books/author/
+{
+	name: Michael
+}
+
+- creating with a specific ID:
+
+POST /books/author/1/_create
+{
+	name: Michael
+}
+
+- Add an additional field:
+
+PUT /books/_mapping/author/
+{
+properties: 
+{
+	total_books:
+	{
+		type: integer
+	}
+}
+}
+
+- Delete a document: 
+
+DELETE /books/author/1
+
