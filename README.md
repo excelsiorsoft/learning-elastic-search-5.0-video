@@ -625,7 +625,23 @@ GET /books/book/_search
 }
 ```
 
+##### Aggregation-based analytics - allowing the use of search to build complex summaries of data
 
+*Metrics aggregation* calculates average value over a given numeric field in a set of documents:
+
+```
+GET /books/book/_search
+{
+	size: 0
+	aggs:
+	{
+		avg_book_count: {
+			avg: {field: "book_count"}
+			missing: 1
+		}
+	}
+}
+```
 
 
 
