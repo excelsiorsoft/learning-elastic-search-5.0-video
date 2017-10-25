@@ -352,9 +352,28 @@ POST /INDEX_NAME/_search
 	}
 }
 
+- Filtered query:
 
-
-
+POST /INDEX_NAME/_search
+{
+	query:{
+		filtered:{
+			filter: {
+				range:{
+					rating: {
+						gte:4.0
+					}
+				}
+			},
+			query:{
+				query_string: {
+					query:"tacos",
+					fields:["tags"]
+				}
+			}
+		}
+	}
+}
 
 
 
