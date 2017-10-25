@@ -200,6 +200,44 @@ GET /books,magazines/book,magazine/_search
 	}
 }
 
+- PUT performs a full-document update, whereas POST does a partial update:
+
+PUT /idx_test/type_test/3 {
+  name: EA
+  goal: 123
+}
+
+GET /idx_test/type_test/3
+
+PUT /idx_test/type_test/3 {
+   goal: 345
+}
+
+GET /idx_test/type_test/3
+
+The name field got removed - full update was performed by a PUT command.
+
+- POST does it differently:
+
+PUT /idx_test/type_test/4 {
+  name: EA
+  goal: 123
+}
+
+GET /idx_test/type_test/3
+
+POST /idx_test/type_test/3/_update {
+   goal: 345
+}
+
+GET /idx_test/type_test/3
+
+The name field is retained - partial update was performed by a POST command.
+
+
+
+
+
 
 
 
