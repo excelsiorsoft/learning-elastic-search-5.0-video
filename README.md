@@ -511,6 +511,76 @@ PUT /leaning_es/course/1
 
 ##### Full field IS analyzed by ES, the exact one - is NOT
 
+- Run a term query against an exact field:
+```
+GET /learning_es/course/_count
+{
+	query: {
+		term: {
+			exact: "Hello World!"
+		}
+	}
+}
+```
+returns 1 result back (count=1), 
+
+whereas running the same #term# query against a full field:
+
+```
+GET /learning_es/course/_count
+{
+	query: {
+		term: {
+			full: "Hello World!"
+		}
+	}
+}
+```
+returns no results (count=0).
+
+To see the results, we will run match query instead:
+GET /learning_es/course/_count
+{
+	query: {
+		match: {
+			full: "Hello World!"
+		}
+	}
+}
+```
+in which case we get a single return(count=1) as expected.
+
+- Takeaway: use match query on full-text field and term query on exact fields(keyword - tag, dates, etc.)
+
+- Range Query (works with numbers and dates):
+
+```
+GET /books/book/_search
+{
+	query: {
+		range: {
+			price: {gte: 18, lt: 30}
+		}
+	}
+}
+```
+
+```
+GET /books/book/_search
+{
+	query: {
+		range: {
+			pub_date: {gte: 2015-01-01, lt: 2016-12-31}
+		}
+	}
+}
+```
+
+- Exist Query
+
+
+
+
 
 
 
