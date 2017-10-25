@@ -279,7 +279,7 @@ POST /INDEX_NAME/_search
 {
 	query:{
 		match_all: {
-			author: "R. L. Stevenson"
+			
 		}
 	}
 }
@@ -315,6 +315,44 @@ POST /INDEX_NAME/_search
 		}
 	}
 }
+
+
+- Range search:
+
+POST /INDEX_NAME/_search
+{
+	query:{
+		range: {
+			rating:{
+				gte: 5
+			}
+		}
+	}
+}
+
+
+POST /INDEX_NAME/_search
+{
+	query:{
+		query_string: {
+			query:"tacos"
+			}
+		}
+	}
+}
+
+POST /INDEX_NAME/_search
+{
+	query:{
+		query_string: {
+			query:"tacos"
+			fields: ["tags"]
+			}
+		}
+	}
+}
+
+
 
 
 
