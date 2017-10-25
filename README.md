@@ -411,7 +411,28 @@ POST /INDEX_NAME/_search
 }
 ```
 
+- Query with explain parameter:
+```
+GET /_search?explain
+{
+	query: {
+		match{
+			description: "Learning about Elastic Search"
+		}
+	}
+}
+```
+- Results of query: 
+```
+{
+	_index: INDEX_NAME
+	_type: TYPE_NAME
+	_id: 10
+	_score: 0.922
+	....
 
+}
+```
 
 
 
