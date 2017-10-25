@@ -668,8 +668,45 @@ GET /books/book/_search
 	}
 }
 ```
+- Geo-aggregation uses longitute and latitude from a set of documents to calculate geo bounds (box) enclosing all lon/lat locations:
 
+```
+GET /INDEX_NAME/TYPE_NAME/_search
+{
+	query: {
+		match: {tags: "technology"}
+	},
+	aggs: {
+		viewport: {
+			geo_bounds: {field: "pin.location"}
+		}
+	}
+}
+```	
+- Bucket Aggregation groups search results in buckets (for histograms)
 
+Date Histogram:
+```
+GET /books/book/_search
+{
+	aggs: {
+		pub_over_time: {"date_histogram: {field: "pub_date", interval: "month"}}
+	}
+}
+```
+- Histogram is applied to numerical values of certain fields across a set of documents:
+```
+GET /books/book/_search
+{
+	aggs: {
+		book_prices: 
+		{"histogram: 
+		{
+			field: "price", interval: 5, min_doc_count: 1
+		}
+	}
+}
+```
 
 
 
