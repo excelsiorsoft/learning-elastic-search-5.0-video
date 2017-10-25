@@ -538,7 +538,8 @@ GET /learning_es/course/_count
 ```
 returns no results (count=0).
 
-To see the results, we will run match query instead:
+To see the results, we will use a match query instead:
+```
 GET /learning_es/course/_count
 {
 	query: {
