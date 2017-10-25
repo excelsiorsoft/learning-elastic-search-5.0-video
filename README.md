@@ -389,6 +389,27 @@ POST /INDEX_NAME/_search
 	}
 }
 ```
+```
+POST /INDEX_NAME/_search
+{
+	query: {
+		filtered: {
+			query: {
+				match: {
+					"address.state": "ny"
+				}
+			},
+			filter: {
+				range:{
+					rating: {
+						gte: 4.0
+					}
+				}
+			}
+		}
+	}
+}
+```
 
 
 
