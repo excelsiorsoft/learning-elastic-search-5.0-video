@@ -642,7 +642,20 @@ GET /books/book/_search
 	}
 }
 ```
+- Cardinatility aggregation is a single-value metrics that allows aggregation of distinct values:
 
+```
+GET /books/book/_search
+{
+	size: 0
+	aggs:
+	{
+		num_of_authors: {
+			cardinality: {field: "author"}
+		}
+	}
+}
+```
 
 
 
