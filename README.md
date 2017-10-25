@@ -647,7 +647,6 @@ GET /books/book/_search
 ```
 GET /books/book/_search
 {
-	size: 0
 	aggs:
 	{
 		num_of_authors: {
@@ -656,7 +655,19 @@ GET /books/book/_search
 	}
 }
 ```
+- Extended Stats aggregation is a multi-value metrics that calculates min, max, variance, std_deviation, etc. over values of a numeric field across a set of documents:
 
+```
+GET /books/book/_search
+{
+	aggs:
+	{
+		book_stats: {
+			extended_stats: {field: "book_count"}
+		}
+	}
+}
+```
 
 
 
