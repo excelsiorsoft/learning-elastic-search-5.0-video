@@ -433,7 +433,29 @@ GET /_search?explain
 
 }
 ```
+```
+GET /books/book/_search
+{
+	query: {term: {title: "Elastic Search 5.0"}}
+	filter: {term: {"price: 10}}
+}
 
+
+GET /books/book/_search
+{
+	query: {
+		bool: {
+			must: [
+			{match: {title: "Big Data"}}
+			],
+			filter:[
+				{term: {language: "en"}}
+				{range: {pub_date: {gte: 2014}}}
+			]
+		}
+	}
+}
+```
 
 
 
