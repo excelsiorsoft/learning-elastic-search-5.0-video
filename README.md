@@ -234,6 +234,87 @@ GET /idx_test/type_test/3
 
 The name field is retained - partial update was performed by a POST command.
 
+###### Search DSL:
+
+curl -XGET http://localhost:9200/INDEX_NAME/_search?q=name:John  or shortcut  
+GET /INDEX_NAME/_search?q=name:John
+
+GET /books/_count  
+
+GET /books/book/_count
+
+GET /books/_search
+{
+	query: {
+		match: {
+			author: "Dennis Alder"
+		}
+	}
+}
+
+GET /books/_search?size=5&from=10
+
+GET /books/_search
+{
+	query: {
+		term: {
+			isbn: "978398147521772547"
+		}
+	}
+}
+
+- A match search across multiple indices & multiple types:
+
+GET /books,magazines/book,magazine/_search
+{
+	query:{
+		match: {
+			author: "R. L. Stevenson"
+		}
+	}
+}
+
+
+POST /INDEX_NAME/_search
+{
+	query:{
+		match_all: {
+			author: "R. L. Stevenson"
+		}
+	}
+}
+
+
+
+POST /INDEX_NAME/_search
+{
+	query:{
+		match: {
+			author: "R. L. Stevenson"
+		}
+	}
+}
+
+
+POST /INDEX_NAME/_search
+{
+	query:{
+		multi_match: {
+			query: superman
+			fields:[city, state]
+		}
+	}
+}
+
+
+POST /INDEX_NAME/_search
+{
+	query:{
+		type: {
+			value: TYPE_NAME
+		}
+	}
+}
 
 
 
