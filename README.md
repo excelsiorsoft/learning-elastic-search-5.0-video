@@ -457,8 +457,59 @@ GET /books/book/_search
 }
 ```
 
+- Term query (most effective with keywords): 
+```
+GET /books/author/_search
+{
+	query: {
+			term: {name: "Mary Smith"}
+		}
+}
+```
+For full-text search use match queries instead. 
+
+- Boosting the importance of 'description' field over the 'title'
+```
+GET /books/book/_search
+{
+	query: {
+			multi_match:{
+				query: "Elastic Search"
+				fields: ["title", "description^2"]
+			}
+		}
+}
+```
+##### Term Queries and Boosting
+
+- Add an index
+```
+PUT /learning_es{
+	mappings: {
+		course:{
+			properties: {
+				full: {
+					type: text
+				},
+				exact: {
+					type: keyword
+				}
+			}
+		}
+	}
+}
+```
+- Add a document:
+```
+PUT /leaning_es/course/1
+{
+	full: "Hello World!"
+	exact: "Hello World!"
+}
+```
 
 
+##### Full field IS analyzed by ES, the exact one - is NOT
 
 
 
