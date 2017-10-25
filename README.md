@@ -274,7 +274,7 @@ GET /books,magazines/book,magazine/_search
 	}
 }
 
-
+```
 POST /INDEX_NAME/_search
 {
 	query:{
@@ -283,9 +283,9 @@ POST /INDEX_NAME/_search
 		}
 	}
 }
+```
 
-
-
+```
 POST /INDEX_NAME/_search
 {
 	query:{
@@ -294,8 +294,8 @@ POST /INDEX_NAME/_search
 		}
 	}
 }
-
-
+```
+```
 POST /INDEX_NAME/_search
 {
 	query:{
@@ -305,8 +305,8 @@ POST /INDEX_NAME/_search
 		}
 	}
 }
-
-
+```
+```
 POST /INDEX_NAME/_search
 {
 	query:{
@@ -315,10 +315,10 @@ POST /INDEX_NAME/_search
 		}
 	}
 }
-
+```
 
 - Range search:
-
+```
 POST /INDEX_NAME/_search
 {
 	query:{
@@ -329,8 +329,8 @@ POST /INDEX_NAME/_search
 		}
 	}
 }
-
-
+```
+```
 POST /INDEX_NAME/_search
 {
 	query:{
@@ -340,7 +340,8 @@ POST /INDEX_NAME/_search
 		}
 	}
 }
-
+```
+```
 POST /INDEX_NAME/_search
 {
 	query:{
@@ -351,9 +352,10 @@ POST /INDEX_NAME/_search
 		}
 	}
 }
-
+```
 - Filtered query:
 
+```
 POST /INDEX_NAME/_search
 {
 	query:{
@@ -374,6 +376,7 @@ POST /INDEX_NAME/_search
 		}
 	}
 }
+```
 
 
 
