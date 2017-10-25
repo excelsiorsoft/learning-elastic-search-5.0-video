@@ -579,6 +579,51 @@ GET /books/book/_search
 
 - Exist Query
 
+- We want to know whether a given fied has at least one non-null value:
+```
+GET /INDEX_NAME/_search
+{
+	query: {
+		exists: {field: "FIELD_NAME"}
+	}
+}
+```
+- How many documents with a non-null 'isbn' field value exists in our index?
+```
+GET /books/book/_search
+{
+	query: {
+		exists: {field: "isbn"}
+	}
+}
+```
+- Term search for a particular book:
+```
+GET /books/book/_search
+{
+	query: {
+		term: {_id: 5}
+	}
+}
+```
+
+- All books (in English) which don't contain 'Big Data' in their title:
+
+```
+GET /books/book/_search
+{
+	query: {
+		bool: {
+			must_not: [
+				{match: {title: "Big Data}}
+			],
+			filter: [
+				{term: {language: "en"}}
+			]
+		}
+	}
+}
+```
 
 
 
