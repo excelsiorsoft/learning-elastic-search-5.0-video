@@ -838,6 +838,109 @@ Not to be used for precision tasks, when real-time low latency data is required,
 
 https://www.safaribooksonline.com/library/view/learning-elasticsearch-50/9781783984589/video8_2.html
 
+##### Sorting in Elastic Search:
+```
+GET /books/book/_search
+{
+	sort: [
+		{pub_date: {order:desc}}
+	],
+	query: {
+		term: {tags: "big data"}
+	}
+}
+```
+```
+GET /books/book/_search
+{
+	from: 0, size: 30
+	sort: [
+		{pub_date: {order:asc}}
+	],
+	query: {
+		match_all: {}
+	}
+}
+```
+##### Geo Searching
+
+- Distance query example:
+
+```
+filter: {
+	geo_distance: {
+		distance: 20km,
+		pin.location:
+			{
+				lat: 40,
+				lon: -70
+			}
+	}
+}
+```
+
+```
+filter: {
+	geo_distance_range: {
+		from: 20km, to: 40km,
+		pin.location:
+			{
+				lat: 40,
+				lon: -70
+			}
+	}
+}
+```
+```
+sort:
+[
+	_geo_distance: {pin.location:[-64,35], order: asc, unit: km, mode: min, distance_type: sloppy_arc}
+]
+```
+##### Synonims
+
+- Skeleton in index:
+```
+PUT /books
+{
+	settings: {
+		analysis: {
+			filter: {}
+			analyzer: {}
+		}
+	}
+}
+```
+
+- Filter Part:
+```
+filter:
+{
+	the_es_filter: 
+	{
+		type: synonym, synonyms:
+		[
+			"AI, Artificial Intelligence, Deep Learning",
+			"big data, massive datasets, petabytes"
+		]
+	}
+}
+```
+- Analyzer Part:
+```
+analyzer:
+{
+	the_es:
+	{
+		tokenizer: standard,
+		filter:
+		[
+			"lowercase", "the_es_filter"
+		]
+	}
+}
+```
+
 
 
 
