@@ -804,6 +804,43 @@ Not to be used for precision tasks, when real-time low latency data is required,
 - X-Pack https://www.elastic.co/products/x-pack
 - Beats https://www.elastic.co/products/beats
 
+##### Preparing for Log Analysis with LogStash
+
+- Configure LogStash pipeline:
+
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/logstash%20pipeline.png)
+
+- FileBeat Configuration:
+
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/filebeat%20config.PNG)
+
+- LogStash Configuration:
+
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/logstash.conf%20skeleton.PNG)
+
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/logstash.conf%20input%20section.PNG)
+
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/logstash.conf%20filter%20section.PNG)
+
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/logstash.conf%20output%20section.PNG)
+
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/grok%20patterns.PNG)
+
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/grok%20complex%20pattern.PNG)
+
+- Test LogStash Pipeline:
+
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/test%20logstash%20pipeline.PNG)
+
+- Run LogStash Pipeline:
+
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/run%20logstash%20pipeline.PNG)
+
+https://www.safaribooksonline.com/library/view/learning-elasticsearch-50/9781783984589/video8_2.html
+
+
+
+
 
 
 
