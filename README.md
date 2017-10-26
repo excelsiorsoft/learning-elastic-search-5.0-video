@@ -797,6 +797,8 @@ Not to be used for precision tasks, when real-time low latency data is required,
 
 ##### ElasticStack
 
+![](https://github.com/excelsiorsoft/learning-elastic-search-5.0-video/blob/master/Elastic%20Stack.PNG)
+
 - Kibana https://www.elastic.co/products/kibana
 - Logstash https://www.elastic.co/products/beats
 - X-Pack https://www.elastic.co/products/x-pack
