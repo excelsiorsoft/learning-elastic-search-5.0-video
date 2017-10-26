@@ -655,7 +655,7 @@ GET /books/book/_search
 	}
 }
 ```
-- Extended Stats aggregation is a multi-value metrics that calculates min, max, variance, std_deviation, etc. over values of a numeric field across a set of documents:
+- Extended Stats aggregation is a multi-value metrics that calculates count, min, max, sum, sum_of_squares, variance, std_deviation, etc. over values of a numeric field across a set of documents:
 
 ```
 GET /books/book/_search
@@ -694,19 +694,114 @@ GET /books/book/_search
 	}
 }
 ```
-- Histogram is applied to numerical values of certain fields across a set of documents:
+- Histogram is applied to numerical values of certain fields grouped into buckets across a set of documents:
 ```
 GET /books/book/_search
 {
 	aggs: {
 		book_prices: 
-		{"histogram: 
+		{histogram: 
 		{
 			field: "price", interval: 5, min_doc_count: 1
 		}
 	}
 }
 ```
+Example - average price of all books:
+
+```
+GET /books/book/_search
+{
+	size: 0
+	aggs: {
+		avg_book_price: 
+		{
+		avg: 
+		{
+			field: "price"
+		}
+	}
+}
+```
+- Use Geo-bounds to form a perimeter (or box) around all of the bookstore in index:
+```
+GET /books/store/_search
+{
+	query: {
+		"match_all: {}
+	},
+	size: 0,
+	aggs: {
+		viewport: {
+			geo_bounds: {
+				field: "pin.location",
+				wrap_longitude: true
+			}
+		}
+	}
+}
+```
+- All books published within certain date range plotted in a histogram by month:
+```
+GET /books/book/_search
+{
+	query: {
+		range: {
+			pub_date: {
+				gte: "2015-01-01", lt: "2016-12-31"
+			}
+		}
+	},
+	size: 0,
+	aggs: {
+		pub_over_time: {
+			date_histogram: {
+				field: "pub_date",
+				interval: "month"
+			}
+		}
+	}
+}
+```
+ES is optimized for read performance.
+
+Impediments of speed:
+
+- Transactions
+- Denormalization
+
+##### ElasticSearch:
+
+- lacks in security: authentication and authorization (X-Pack compensates for this)
+- cannot cancel resource intensive queries
+- prone & susceptible to OutOfMemory errors
+
+ES is most effectively used in conjunction with another DB, allowing to leverage the full power of search while simultaneously enjoying the robustness of a mature (relational) DB system.  In this model the DB maintaines the master records while asynchronously pushing records to ES.  
+
+It's perfect for write once, read many times (WORM) situations.
+
+Good for: 
+
+- Indexing and searching massive datasets
+- Querying large datasets for exact matches in select fields
+- Filtering
+- Storing semi-structured WORM data
+- Wide range searches
+- Time-based aggregations
+- Geo data points handling
+
+ElasticSearch vs Druid: https://stackoverflow.com/questions/40287228/what-are-differences-between-druid-and-elasticsearch-whart-advantages-for-both
+
+
+Not to be used for precision tasks, when real-time low latency data is required, when there's a need for transations, granular security features, integrity constraints (record uniqueness guarantees).
+
+##### ElasticStack
+
+- Kibana https://www.elastic.co/products/kibana
+- Logstash https://www.elastic.co/products/beats
+- X-Pack https://www.elastic.co/products/x-pack
+- Beats https://www.elastic.co/products/beats
+
 
 
 
