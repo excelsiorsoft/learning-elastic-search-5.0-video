@@ -1,4 +1,4 @@
-# Learning-elastic-search-5.0-video
+# Learning Elastic Search 5.0 Video
 
 My notes while following the following video: https://www.safaribooksonline.com/library/view/learning-elasticsearch-50/9781783984589/
 
